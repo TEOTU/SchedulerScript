@@ -11,7 +11,7 @@ SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
 # The ID and range of a sample spreadsheet.
 SAMPLE_SPREADSHEET_ID = "1yca1wLBj0vRrgbG6x_lg5IQtNqH3GAfE36mJWIefAlU"
-FIRST_TOPIC_RANGE, FIRST_ROW_RANGE = 1, 1  # All the topics are stored from the row 1(which is second) and value 1(also)
+FIRST_TOPIC_RANGE, FIRST_ROW_RANGE = 2, 1  # All the topics are stored from the row 1(which is second) and value 1(also)
 CREDS = None
 SHEET_NUM = 2  # The number of the sheet in a spreadsheet
 DATA_ENTRY = 0
