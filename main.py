@@ -11,10 +11,8 @@ SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
 # The ID and range of a sample spreadsheet.
 SPREADSHEET_ID = "1yca1wLBj0vRrgbG6x_lg5IQtNqH3GAfE36mJWIefAlU"
-RANGE = 'Studying!E1:I1009'  # All the topics are stored from the row 1(which is second) and value 1(also)
+RANGES = ['Studying!B2:C1009', 'Studying!E2:I1009']  # Topics names and repetition intervals
 CREDS = None
-SHEET_NUM = 2  # The number of the sheet in a spreadsheet
-DATA_ENTRY = 0
 
 
 def get_sheet_info():
@@ -26,7 +24,7 @@ def get_sheet_info():
     result = (
         sheet
         .values()
-        .get(spreadsheetId=SPREADSHEET_ID, range=RANGE)
+        .batchGet(spreadsheetId=SPREADSHEET_ID, ranges=RANGES)
         .execute()
     )
     return result
@@ -34,7 +32,7 @@ def get_sheet_info():
 
 def get_info():
     result = get_sheet_info()
-    values = result.get('values', [])
+    values = result.get('valuesRanges', [])
     if not values:
         print("No data found.")
     else:
@@ -60,6 +58,7 @@ def connect():
         # Save the credentials for the next run
         with open("token.json", "w") as token:
             token.write(CREDS.to_json())
+
 
 def main():
     try:
