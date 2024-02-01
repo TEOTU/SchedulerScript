@@ -31,11 +31,14 @@ def get_sheet_info():
 
 
 def get_info():
+    values = []
     result = get_sheet_info()
-    values = result.get('valuesRanges', [])
-    if not values:
+    values_ranges = result.get('valueRanges', [])
+    if not values_ranges:
         print("No data found.")
     else:
+        for i in range(0, 2):  # values[0] - First columns with topics/subtopics, values[1] - columns with intervals
+            values.append(values_ranges[i]['values'])
         return values
 
 
