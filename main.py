@@ -5,6 +5,8 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+from datetime import datetime
+
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
@@ -51,6 +53,12 @@ def column_to_value():
     return column_value
 
 
+def current_date():
+    date = datetime.now()
+    formatted_date = date.strftime("%m/%d/%Y")
+    return formatted_date
+
+
 def connect():
     global CREDS
     # The file token.json stores the user's access and refresh tokens, and is
@@ -75,7 +83,6 @@ def connect():
 def main():
     try:
         connect()
-        print(column_to_value())
     except HttpError as err:
         print(err)
 
