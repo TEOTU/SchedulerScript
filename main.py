@@ -37,9 +37,20 @@ def get_info():
     if not values_ranges:
         print("No data found.")
     else:
-        for i in range(0, 2):  # values[0] - First columns with topics/subtopics, values[1] - columns with intervals
-            values.append(values_ranges[i]['values'])
+        for block in range(0, 2):  # values[0] - First columns with topics/subtopics, values[1] - columns with intervals
+            values.append(values_ranges[block]['values'])
         return values
+
+
+def column_to_value():
+    column_value = []
+    row = 0  # the first row
+    for i in range(0, 2):  # go through 2 blocks of values
+        column_value.append({})  # for each block create corresponding dictionary
+        for data in get_info()[i]:
+            column_value[i][row] = data
+            row += 1
+    return column_value
 
 
 def connect():
@@ -66,7 +77,7 @@ def connect():
 def main():
     try:
         connect()
-        print(get_info())
+        print(column_to_value())
     except HttpError as err:
         print(err)
 
