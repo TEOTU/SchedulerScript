@@ -44,12 +44,10 @@ def get_info():
 
 def column_to_value():
     column_value = []
-    row = 0  # the first row
     for i in range(0, 2):  # go through 2 blocks of values
         column_value.append({})  # for each block create corresponding dictionary
-        for data in get_info()[i]:
-            column_value[i][row] = data
-            row += 1
+        for row, data in enumerate(get_info()[i]):
+            column_value[i][row+2] = data  # +2 because topics start from the 2nd rwo
     return column_value
 
 
